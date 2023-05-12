@@ -38,12 +38,12 @@ describe("NewNotePage", () => {
 
     expect(successMessage).toBeInTheDocument();
   });
-  test.only("render an error message when the note is unsuccessfully saved.", async () => {
+  test("render an error message when the note is unsuccessfully saved.", async () => {
     useSaveNote.mockReturnValue({
       handleSubmit: jest.fn(),
       saveResult: "error",
     });
-    const user = userEvent.setup();g
+    const user = userEvent.setup();
     render(
       <MemoryRouter>
         <NewNotePage />
@@ -60,6 +60,18 @@ describe("NewNotePage", () => {
   });
 
   test("The home page should be rendered when the home link is clicked.", async () => {
+    const user = userEvent.setup();
 
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const button = screen.getByText("Go to home");
+    await user.click(button);
+
+    const homeTitle = await screen.findByText("Notes");
+    expect(homeTitle).toBeInTheDocument();
   });
 });
