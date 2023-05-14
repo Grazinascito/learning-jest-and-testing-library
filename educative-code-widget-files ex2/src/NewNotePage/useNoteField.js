@@ -4,7 +4,7 @@ export function useNoteField() {
     const [note, setNote] = React.useState("");
 
     function handleNoteChange(e) {
-        setNote(e.currentTarget.value);
+        setNote(e.currentTarget.value); 
     }
 
     return {
